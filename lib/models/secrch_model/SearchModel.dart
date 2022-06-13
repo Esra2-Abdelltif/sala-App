@@ -12,18 +12,18 @@ class SearchModel {
 }
 
 class Data {
-  int currentPage;
+  dynamic currentPage;
   List<Product> data;
   String firstPageUrl;
-  int from;
-  int lastPage;
+  dynamic from;
+  dynamic lastPage;
   String lastPageUrl;
   Null nextPageUrl;
   String path;
-  int perPage;
+  dynamic perPage;
   Null prevPageUrl;
-  int to;
-  int total;
+  dynamic to;
+  dynamic total;
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

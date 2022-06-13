@@ -7,6 +7,7 @@ import 'package:salaa_app/models/categroy_model/categroy_model.dart';
 import 'package:salaa_app/models/home_model/home_model.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/modules/product_details/ProductsDetails.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/size_config.dart';
@@ -139,6 +140,8 @@ crossAxisAlignment: CrossAxisAlignment.start,
                       InkWell(
                         onTap: (){
                           print('details');
+                          NavigateTo(context: context,router:  ProductsDetails(productsId:modelHome.data.products[index].id,));
+                       //   ProductsDetails(productsId: productsId,)
                           // NavigateToProductsDetails(context ,data.id!);
                           },
                         child: Container(

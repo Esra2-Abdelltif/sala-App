@@ -12,18 +12,18 @@ class FavoritesModel {
 }
 
 class Data {
-  int currentPage;
+  dynamic currentPage;
   List<FavouritesData> data;
   String firstPageUrl;
-  int from;
-  int lastPage;
+  dynamic from;
+  dynamic lastPage;
   String lastPageUrl;
   Null nextPageUrl;
   String path;
-  int perPage;
+  dynamic perPage;
   Null prevPageUrl;
-  int to;
-  int total;
+  dynamic to;
+  dynamic total;
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -48,7 +48,7 @@ class Data {
 }
 
 class FavouritesData {
-  int id;
+  dynamic id;
   Product product;
 
 
@@ -61,7 +61,7 @@ class FavouritesData {
 }
 
 class Product  {
-  int id;
+  dynamic id;
   dynamic price;
   dynamic oldPrice;
   dynamic discount;

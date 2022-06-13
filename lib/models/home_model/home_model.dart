@@ -60,7 +60,7 @@ class HomeDataModel {
 }
 
 class BannersModel {
-  int id;
+  dynamic id;
   String image;
   Null category;
   Null product;
@@ -85,7 +85,7 @@ class BannersModel {
 }
 
 class ProductsModel {
-  int id;
+  dynamic id;
   dynamic price;
   dynamic oldPrice;
   dynamic discount;

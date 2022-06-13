@@ -8,7 +8,7 @@ class CategoriesDataModel {
 }
 
 class CategoriesData {
-  int current_page;
+  dynamic current_page;
   List<Data> data = [];
   CategoriesData.fromJson(Map<String, dynamic> jsondata) {
     current_page = jsondata["current_page"];
@@ -19,7 +19,7 @@ class CategoriesData {
 }
 
 class Data {
-  int id;
+  dynamic id;
   String name;
   String image;
   Data.fromJson(Map<String, dynamic> json) {

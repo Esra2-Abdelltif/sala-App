@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
 import 'package:salaa_app/models/CategoriesDetailsModel/CategoriesDetailsModel.dart';
+import 'package:salaa_app/modules/product_details/ProductsDetails.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/size_config.dart';
 import 'package:salaa_app/shared/compoenets/widgets.dart';
@@ -71,8 +73,8 @@ class CategoryDetailsScreen extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: (){
-                                print('details');
-                                // NavigateToProductsDetails(context ,data.id!);
+                                NavigateTo(context: context,router:  ProductsDetails(productsId:model.data.productData[index].id,));
+
                               },
                               child: Container(
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),

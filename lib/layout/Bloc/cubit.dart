@@ -6,6 +6,8 @@ import 'package:salaa_app/layout/Bloc/states.dart';
 import 'package:salaa_app/models/CategoriesDetailsModel/CategoriesDetailsModel.dart';
 import 'package:salaa_app/models/Change_Card/ChangeCartModel.dart';
 import 'package:salaa_app/models/cartmodel/CartModel.dart';
+import 'package:salaa_app/models/contactUs/ContactUsModel.dart';
+import 'package:salaa_app/models/prodect_details/ProductDetailsModel.dart';
 import 'package:salaa_app/models/profileModel/ProfileModel.dart';
 import 'package:salaa_app/models/categroy_model/categroy_model.dart';
 
@@ -141,7 +143,6 @@ class AppCubit extends Cubit<AppStates>
   Map<int,bool> CartList={};
   ChangeCartsModel changeCartsModel;
   void ChangeCart({@required int ProductId}){
-    CartList[ProductId] = !CartList[ProductId];
     emit(LoadingsChangeCartStates());
     DioHelper.postData(
       Url: CART,
@@ -152,19 +153,25 @@ class AppCubit extends Cubit<AppStates>
     ).then((value) {
       changeCartsModel=  ChangeCartsModel.fromJson(value.data);
       print(value.data);
-      if(!changeCartsModel.status)
-      {
-        CartList[ProductId] = !CartList[ProductId];
-      }
-      else{
         getCartData();
-      }
+      getProductsDetails(id: ProductId);
+
 
       emit(SuccessChangeCartSuccessState(changeCartsModel));
     }).catchError((error){
       CartList[ProductId] = !CartList[ProductId];
       print(error.toString());
       emit(ErrorChangeCartStates(error.toString()));
+    });
+  }
+//product details
+  ProductDetailsmodel productDetailsmodel  ;
+  void getProductsDetails ({@required int id})async{
+    await DioHelper.getData(Url:  "products/$id" ,token: token).then((value){
+      productDetailsmodel =ProductDetailsmodel.fromJson(value.data);
+      emit(SucessGetDetailsProductStates());
+    }).catchError((erroe){
+      emit(ErrorGetDetailsProductStates());
     });
   }
 
@@ -289,23 +296,6 @@ class AppCubit extends Cubit<AppStates>
     emit(SuccessCategoriesDataStates());
   }
 
-//Setting About Us
-  SettingsModel settingsModel;
-
-  void getSettings() {
-    emit(ShopLoadingGetSettingsState());
-    DioHelper.getData(
-      Url: SETTINGS,
-      token: token
-    ).then((value) {
-      settingsModel = SettingsModel.fromJson(value.data);
-      emit(ShopSuccessGetSettingsState());
-      print("abut as ${settingsModel.data.about}");
-    }).catchError((error) {
-      //printFullText('ERROR SETTINGS ' + error.toString());
-      emit(ShopErrorGetSettingsState(error.toString()));
-    });
-  }
 
 
 //CategoriesDetails
@@ -333,8 +323,40 @@ class AppCubit extends Cubit<AppStates>
     );
   }
 
+//Setting About Us
+  SettingsModel settingsModel;
+
+  void getSettings() {
+    emit(ShopLoadingGetSettingsState());
+    DioHelper.getData(
+        Url: SETTINGS,
+        token: token
+    ).then((value) {
+      settingsModel = SettingsModel.fromJson(value.data);
+      emit(ShopSuccessGetSettingsState());
+      print("abut as ${settingsModel.data.about}");
+    }).catchError((error) {
+      //printFullText('ERROR SETTINGS ' + error.toString());
+      emit(ShopErrorGetSettingsState(error.toString()));
+    });
+  }
 
 
+//Contact Us
+  ContactUsModel contactUsModel;
+
+  void getContctUs() async{
+   // emit(LoadingGetContactUsState());
+     await DioHelper.getData(
+      Url: CONTACT,
+      token: token
+    ).then((value) {
+      contactUsModel = ContactUsModel.fromJson(value.data);
+      emit(SuccessGetContactUsState());
+    }).catchError((error) {
+      emit(ErrorGetContactUsState());
+    });
+  }
 
 
 }

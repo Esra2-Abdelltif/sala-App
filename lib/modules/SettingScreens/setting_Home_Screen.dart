@@ -7,6 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/ContactUsPage/ContactUs.dart';
 import 'package:salaa_app/modules/SettingScreens/screens/about_screen/aboutScreen.dart';
 import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/bloc/cubit.dart';
 import 'package:salaa_app/modules/cart_screen/cart_screen.dart';
@@ -177,7 +178,7 @@ class Setting extends StatelessWidget {
                   //Cart
                   InkWell(
                     onTap: (){
-                      AppCubit.get(context).ChangeIndex(4);
+                      NavigateTo(context: context,router: ContactUsScreen());
                     },
                     child: Container(
                         height: 70,
@@ -189,9 +190,9 @@ class Setting extends StatelessWidget {
                           ),),
                         child: Row(children: [
                           SizedBox(width: 10),
-                          Icon(Icons.shopping_cart ,color: defultColor,size: 40),
+                          Icon(Icons.contact_phone_rounded ,color: defultColor,size: 40),
                           SizedBox(width: 15),
-                          Text('Sala'),
+                          Text('Contact US '),
                           Spacer(),
                           Icon(
                             Icons.navigate_next,

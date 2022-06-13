@@ -12,13 +12,13 @@ class ProfileModel {
 }
 
 class ProfileDate {
-  int id ;
+  dynamic id ;
   String name ;
   String email ;
   String phone ;
   String image;
-  int points ;
-  int credit ;
+  dynamic points ;
+  dynamic credit ;
   String token ;
 
   ProfileDate.fromJson(Map<String,dynamic> json){

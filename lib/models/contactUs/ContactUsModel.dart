@@ -1,8 +1,8 @@
-class CategoryDetailModel {
+class ContactUsModel {
   bool status;
   Data data;
 
-  CategoryDetailModel.fromJson(Map<String, dynamic> json) {
+  ContactUsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
@@ -10,54 +10,50 @@ class CategoryDetailModel {
 
 class Data {
   dynamic currentPage;
-  List<ProductData> productData = [];
+  List<ContactData> data=[];
   String firstPageUrl;
   dynamic from;
   dynamic lastPage;
   String lastPageUrl;
+  Null nextPageUrl;
   String path;
   dynamic perPage;
+  Null prevPageUrl;
   dynamic to;
   dynamic total;
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
-    json['data'].forEach((element) {
-      productData.add(ProductData.fromJson(element));
-    });
+    if (json['data'] != null) {
+      data = new List<ContactData>();
+      json['data'].forEach((v) {
+        data.add(new ContactData.fromJson(v));
+      });
+    }
     firstPageUrl = json['first_page_url'];
     from = json['from'];
     lastPage = json['last_page'];
     lastPageUrl = json['last_page_url'];
+    nextPageUrl = json['next_page_url'];
     path = json['path'];
     perPage = json['per_page'];
+    prevPageUrl = json['prev_page_url'];
     to = json['to'];
     total = json['total'];
   }
+
 }
 
-class ProductData {
+class ContactData {
   dynamic id;
-  dynamic price;
-  dynamic oldPrice;
-  dynamic discount;
+  dynamic type;
+  String value;
   String image;
-  String name;
-  String description;
-  List<String> images;
-  bool inFavorites;
-  bool inCart;
 
-  ProductData.fromJson(Map<String, dynamic> json) {
+  ContactData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    price = json['price'];
-    oldPrice = json['old_price'];
-    discount = json['discount'];
+    type = json['type'];
+    value = json['value'];
     image = json['image'];
-    name = json['name'];
-    description = json['description'];
-    images = json['images'].cast<String>();
-    inFavorites = json['in_favorites'];
-    inCart = json['in_cart'];
   }
 }

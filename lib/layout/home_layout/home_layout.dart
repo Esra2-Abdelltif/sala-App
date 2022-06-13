@@ -26,60 +26,58 @@ class HomeLayout extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return BlocProvider(create: ((context) =>AppCubit()..getCategoriesData()..getHomeData()..getFavoritesData()..getCategoriesDetails()),
-      child: BlocConsumer<AppCubit,AppStates>(
-          listener: (BuildContext context,AppStates state)
-          {
-          },
-          builder: (BuildContext context ,AppStates state)
-          {
-            AppCubit cubit = AppCubit.get(context);
-            return Scaffold(
-              key: ScaffoldKey,
-              appBar: AppBar(
+    return BlocConsumer<AppCubit,AppStates>(
+        listener: (BuildContext context,AppStates state)
+        {
+        },
+        builder: (BuildContext context ,AppStates state)
+        {
+          AppCubit cubit = AppCubit.get(context);
+          return Scaffold(
+            key: ScaffoldKey,
+            appBar: AppBar(
 
-                  title: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundImage: AssetImage('assets/images/shopping app logo1.png',),
-                      ),
-                      SizedBox(
-                        width: 10,),
-                      Text('Salaa ',style: TextStyle( fontFamily: 'Pacifico',color: defultColor,fontSize: 24))
-                    ],
-                  ),
-                  actions: [
-                    IconButton(
-                        onPressed: (){
-                          NavigateTo(router: SearchScreen(),context: context);
-                        }, icon: Icon(Icons.search ,color: defultColor,size: 30,)),
-                  ]),
-              body: cubit.Screen[cubit.CurrentIndex],
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  NavigateTo(router: CartScreen(),context: context);
-                },
-                child: Icon(Icons.shopping_cart),
-                backgroundColor: defultColor,
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-              bottomNavigationBar: BottomNavigationBarwidget(context,bgcolor: ThemeAppCubit.get(context).IsDark ? Colors.white:HexColor('333739') ,),
-              //
-              // bottomNavigationBar: BottomNavigationBar(
-              //   items: cubit.bottomNavigation,
-              //   currentIndex: cubit.CurrentIndex,
-              //   onTap: (index) {
-              //     cubit.ChangeIndex(index);
-              //   },
-              // ),
-
+                title: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 15,
+                      backgroundImage: AssetImage('assets/images/shopping app logo1.png',),
+                    ),
+                    SizedBox(
+                      width: 10,),
+                    Text('Salaa ',style: TextStyle( fontFamily: 'Pacifico',color: defultColor,fontSize: 24))
+                  ],
+                ),
+                actions: [
+                  IconButton(
+                      onPressed: (){
+                        NavigateTo(router: SearchScreen(),context: context);
+                      }, icon: Icon(Icons.search ,color: defultColor,size: 30,)),
+                ]),
+            body: cubit.Screen[cubit.CurrentIndex],
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                NavigateTo(router: CartScreen(),context: context);
+              },
+              child: Icon(Icons.shopping_cart),
+              backgroundColor: defultColor,
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: BottomNavigationBarwidget(context,bgcolor: ThemeAppCubit.get(context).IsDark ? Colors.white:HexColor('333739') ,),
+            //
+            // bottomNavigationBar: BottomNavigationBar(
+            //   items: cubit.bottomNavigation,
+            //   currentIndex: cubit.CurrentIndex,
+            //   onTap: (index) {
+            //     cubit.ChangeIndex(index);
+            //   },
+            // ),
 
 
-            );
-          }
 
-      ),
+          );
+        }
+
     );
   }
 }

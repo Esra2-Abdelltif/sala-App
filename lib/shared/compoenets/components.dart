@@ -112,7 +112,7 @@ Color chooseToastColor(ToastState state){
 }
 
 //خط فاصل
-Widget MyDivider({double margin = 0.0}) => Container(
+Widget MyDivider({double margin = 0.0,Colors bgColor}) => Container(
   color: Colors.grey[300],
   width: double.infinity,
   height: 1,
@@ -120,3 +120,4 @@ Widget MyDivider({double margin = 0.0}) => Container(
   margin: EdgeInsets.symmetric(horizontal: margin),
 );
 
+const bgColor= Color(0xFF8D8E98);

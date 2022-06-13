@@ -76,6 +76,9 @@ class ErrorChangeCartStates extends AppStates{
   ErrorChangeCartStates(this.error);
 }
 
+//product details
+class SucessGetDetailsProductStates extends AppStates {}
+class ErrorGetDetailsProductStates extends AppStates {}
 
 
 //Cart screen
@@ -116,3 +119,9 @@ class ErrorCategoriesDetailsStates extends AppStates{
 
 
 
+//contact US
+class LoadingGetContactUsState extends AppStates {}
+
+class SuccessGetContactUsState extends AppStates {}
+
+class ErrorGetContactUsState extends AppStates {}

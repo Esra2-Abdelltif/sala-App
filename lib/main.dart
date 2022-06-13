@@ -33,17 +33,6 @@ void main()  async {
   print("onBoarding : ${onBoarding}");
   print("shoptoken : ${shoptoken}");
 
-  if(onBoarding !=null)
-  {
-    if(shoptoken!=null){
-      RightScreen= HomeLayout();
-    }
-    else{
-      RightScreen =WelcomeScreen();}
-  }
-  else{
-    RightScreen = OnBoardinScreen();
-  }
 
 
 
@@ -66,7 +55,7 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: ((context) => AppCubit()..getHomeData()..getFavoritesData()..getSettings()..getCategoriesData()..getCategoriesDetails())),
+        BlocProvider(create: ((context) => AppCubit()..getHomeData()..getFavoritesData()..getSettings()..getCategoriesData()..getCategoriesDetails()..getContctUs)),
         BlocProvider(create: (BuildContext context )=>ThemeAppCubit()..ChangeAppMode(fromShared: IsDark)),
         BlocProvider(
           create: (context) => SearchCubit()..SearchProduct,
