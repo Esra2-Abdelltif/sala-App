@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:salaa_app/modules/login_screen/login_screen.dart';
-import 'package:salaa_app/modules/signup_screen/signup_screen.dart';
+import 'package:salaa_app/modules/Register_Screens/login_screen/login_screen.dart';
+import 'package:salaa_app/modules/Register_Screens/signup_screen/signup_screen.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
-import '../../shared/Constans/constans.dart';
+import '../../../shared/Constans/constans.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key key}) : super(key: key);

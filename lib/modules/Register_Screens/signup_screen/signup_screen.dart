@@ -2,16 +2,16 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:salaa_app/modules/login_screen/cubit/cubit.dart';
-import 'package:salaa_app/modules/login_screen/login_screen.dart';
-import 'package:salaa_app/modules/signup_screen/cubit/cubit.dart';
-import 'package:salaa_app/modules/signup_screen/cubit/state.dart';
+import 'package:salaa_app/modules/Register_Screens/login_screen/cubit/cubit.dart';
+import 'package:salaa_app/modules/Register_Screens/login_screen/login_screen.dart';
+import 'package:salaa_app/modules/Register_Screens/signup_screen/cubit/cubit.dart';
+import 'package:salaa_app/modules/Register_Screens/signup_screen/cubit/state.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Network/local/cacheHelper.dart';
 
-import '../../layout/home_layout/home_layout.dart';
-import '../../shared/Styles/colors.dart';
-import '../../shared/compoenets/components.dart';
+import '../../../layout/home_layout/home_layout.dart';
+import '../../../shared/Styles/colors.dart';
+import '../../../shared/compoenets/components.dart';
 import '../login_screen/cubit/state.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -30,19 +30,19 @@ class SignupScreen extends StatelessWidget {
             listener: (BuildContext context,  state) {
               if(state is SignUpSuccessState)
               {
-                if(state.loginModel.status)
+                if(state.userDateModel.status)
                 {
-                  showError(massage: state.loginModel.message ,
+                  showError(massage: state.userDateModel.message ,
                       state: ToastState.SUCCESS,
                       gravity: ToastGravity.BOTTOM,
                       toastLength: Toast.LENGTH_LONG);
-                  CacheHelper.saveDate(key: 'token', value: state.loginModel.data.token).then((value)  {
-                    token =  state.loginModel.data.token;
+                  CacheHelper.saveDate(key: 'token', value: state.userDateModel.data.token).then((value)  {
+                    token =  state.userDateModel.data.token;
                     NavigateAndFinsh(context: context,router: HomeLayout());
                   });
                 }
                 else{
-                  showError(massage: state.loginModel.message ,
+                  showError(massage: state.userDateModel.message ,
                       state: ToastState.ERROR,
                       gravity: ToastGravity.BOTTOM,
                       toastLength: Toast.LENGTH_LONG);

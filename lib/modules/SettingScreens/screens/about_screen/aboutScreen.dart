@@ -5,8 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 
-import '../../layout/Bloc/cubit.dart';
-import '../../layout/Bloc/states.dart';
+import '../../../../layout/Bloc/cubit.dart';
+import '../../../../layout/Bloc/states.dart';
+
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({Key key}) : super(key: key);

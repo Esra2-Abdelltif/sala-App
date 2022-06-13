@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
-import 'package:salaa_app/modules/login_screen/cubit/state.dart';
-import 'package:salaa_app/modules/signup_screen/cubit/state.dart';
+import 'package:salaa_app/modules/Register_Screens/login_screen/cubit/state.dart';
+import 'package:salaa_app/modules/Register_Screens/signup_screen/cubit/state.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Network/remote/dio_helper.dart';
 
-import '../../../shared/Network/end_point/end_point.dart';
+import '../../../../models/userDataModel/UserDateModel.dart';
+import '../../../../shared/Network/end_point/end_point.dart';
 
 class SignUpCubit extends Cubit<SignUpStates>
 {
@@ -25,9 +27,9 @@ class SignUpCubit extends Cubit<SignUpStates>
       'phone':phone
     },
     ).then((value) {
-     loginModel= LoginModel.fromJson(value.data);
-      print(loginModel.message);
-      emit(SignUpSuccessState(loginModel));
+      userDateModel= UserDateModel.fromJson(value.data);
+      print( userDateModel.message);
+      emit(SignUpSuccessState(userDateModel));
     }).catchError((error){
       print(error.toString());
       emit(SignUpErrorState(error.toString()));

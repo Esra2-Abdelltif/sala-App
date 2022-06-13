@@ -3,15 +3,22 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salaa_app/modules/cart_screen/cart_screen.dart';
-import 'package:salaa_app/modules/welcome_screen/welcome_screen.dart';
+import 'package:salaa_app/modules/Register_Screens/welcome_screen/welcome_screen.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/bloc/cubit.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/bloc/states.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
 
 
-import '../../shared/Styles/colors.dart';
+import '../../../../shared/Constans/constans.dart';
+import '../../../../shared/Constans/constans.dart';
+import '../../../../shared/Styles/colors.dart';
 
 class UserProfile extends StatelessWidget {
   var nameController = TextEditingController();
@@ -24,18 +31,23 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return BlocConsumer<AppCubit ,AppStates>(
+    return BlocConsumer<ProfileCubit ,ProfileStates>(
       listener: (BuildContext context , state){
-        if (state is SuccessGeUserDataState )
+        if (state is UpdateProfileSuccessState)
           {
-            nameController.text = state.userDateModel.data.name ;
-            emailController.text = state.userDateModel.data.email ;
-            phoneController.text =state.userDateModel.data.phone;
-          }
+              if(state.userDateModel.status){
+                showError(massage:  state.userDateModel.message, state: ToastState.SUCCESS);
+                ProfileCubit.get(context).getProfileData();
+              }else{
+          showError(massage:  state.userDateModel.message, state: ToastState.ERROR);
+              }
+            }
+
 
       } ,
       builder: (context ,state) {
-        var model = AppCubit.get(context).userDateModel;
+        var model = ProfileCubit.get(context).profileModel;
+
         nameController.text = model.data.name ;
         emailController.text = model.data.email ;
         phoneController.text =model.data.phone;
@@ -44,7 +56,7 @@ class UserProfile extends StatelessWidget {
         return  Scaffold(
           appBar: AppBar(),
             body: ConditionalBuilder(
-              condition: AppCubit.get(context).userDateModel != null,
+              condition: ProfileCubit.get(context).profileModel != null,
              builder: (context)=>SingleChildScrollView(
                child: Container(
                  child: Form(
@@ -52,7 +64,7 @@ class UserProfile extends StatelessWidget {
                    child: Column(
                      //mainAxisAlignment: MainAxisAlignment.center,
                      children: [
-                       if(state is LoadingUpdateUserDataStates)
+                       if(state is UpdateProfileLoadingStates)
                          LinearProgressIndicator(),
                        Center(child: Text('My Profile',style: TextStyle(color: defultColor,fontSize: 30),)),
                        SizedBox(
@@ -178,7 +190,7 @@ class UserProfile extends StatelessWidget {
 
                              defultMaterialButton(height: 50, width: 150,text: 'Update', function:(){
                                if(formkey.currentState.validate()){
-                                 AppCubit.get(context).UpdateUserData(
+                                 ProfileCubit.get(context).UpdateUserData(
                                      name: nameController.text,
                                      email: emailController.text,
                                      phone: phoneController.text

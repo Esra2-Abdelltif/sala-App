@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
 
+import '../../../../models/userDataModel/UserDateModel.dart';
+
 @immutable
 abstract class LogInStates
 {
@@ -11,9 +13,9 @@ abstract class LogInStates
 class InitialLogInStates extends LogInStates{}
 class LoginLoadingState extends LogInStates{}
 class LoginSuccessState extends LogInStates{
-  LoginModel loginModel;
+   UserDateModel userDateModel;
 
-  LoginSuccessState(this.loginModel);
+  LoginSuccessState(this.userDateModel);
 }
 class LoginErrorState extends LogInStates{
   final String error;

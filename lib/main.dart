@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salaa_app/layout/home_layout/home_layout.dart';
 import 'package:salaa_app/layout/splash_screen/spalsh_screen.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/bloc/cubit.dart';
 import 'package:salaa_app/modules/on_boarding_screen/on_boardin_screen.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Network/local/cacheHelper.dart';
@@ -11,7 +12,7 @@ import 'package:salaa_app/shared/Styles/theme/theme.dart';
 
 import 'layout/Bloc/observer_bloc.dart';
 import 'modules/search_screen/bloc/cubit.dart';
-import 'modules/welcome_screen/welcome_screen.dart';
+import 'modules/Register_Screens/welcome_screen/welcome_screen.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
 import 'shared/Network/remote/dio_helper.dart';
@@ -47,7 +48,7 @@ void main()  async {
 
 
   BlocOverrides.runZoned( () {
-    runApp( MyApp(IsDark,RightScreen));
+    runApp( MyApp((IsDark != null) ? IsDark : false ,RightScreen));
 
   },
     blocObserver: MyBlocObserver(),
@@ -65,10 +66,13 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: ((context) => AppCubit()..getHomeData()..getFavoritesData()..getUserData()..getSettings()..getCategoriesData())),
+        BlocProvider(create: ((context) => AppCubit()..getHomeData()..getFavoritesData()..getSettings()..getCategoriesData()..getCategoriesDetails())),
         BlocProvider(create: (BuildContext context )=>ThemeAppCubit()..ChangeAppMode(fromShared: IsDark)),
         BlocProvider(
-          create: (context) => SearchCubit(),
+          create: (context) => SearchCubit()..SearchProduct,
+        ),
+        BlocProvider(
+          create: (context) => ProfileCubit()..getProfileData(),
         ),
 
       ],

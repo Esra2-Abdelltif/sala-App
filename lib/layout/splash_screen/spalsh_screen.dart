@@ -7,7 +7,7 @@ import 'package:salaa_app/modules/on_boarding_screen/on_boardin_screen.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Network/local/cacheHelper.dart';
 
-import '../../modules/welcome_screen/welcome_screen.dart';
+import '../../modules/Register_Screens/welcome_screen/welcome_screen.dart';
 class SplashSCreen extends StatelessWidget {
 
   @override

@@ -26,7 +26,7 @@ class HomeLayout extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return BlocProvider(create: ((context) =>AppCubit()..getCategoriesData()..getHomeData()..getFavoritesData()..getUserData()),
+    return BlocProvider(create: ((context) =>AppCubit()..getCategoriesData()..getHomeData()..getFavoritesData()..getCategoriesDetails()),
       child: BlocConsumer<AppCubit,AppStates>(
           listener: (BuildContext context,AppStates state)
           {

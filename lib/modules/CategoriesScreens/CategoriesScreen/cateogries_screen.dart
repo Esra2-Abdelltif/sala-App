@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salaa_app/models/categroy_model/categroy_model.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/modules/CategoriesScreens/CategoriesDetails_Screeen/CategoriesDetails_Screen.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 
 class CateogriesScreen extends StatelessWidget {
@@ -46,36 +48,42 @@ class CateogriesScreen extends StatelessWidget {
 
   Widget buildCategory(Data model,BuildContext context,)=> Padding(
     padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-    child: Container(
+    child: InkWell(
+      onTap: (){
+        AppCubit.get(context).getCategoriesDetails( categoryId: model.id);
+        NavigateTo(context: context,router:CategoryDetailsScreen(model.name));
+      },
+      child: Container(
 
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
   decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
   border: Border.all(
   width: 1,
   color:Colors.grey[300]
   ),),
-      child: Row(
-        children: [
-         // SizedBox(width: 15,),
-          Image(image: NetworkImage("${model.image}"),
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width /3,
-            //height: MediaQuery.of(context).size.height / 5,
+        child: Row(
+          children: [
+           // SizedBox(width: 15,),
+            Image(image: NetworkImage("${model.image}"),
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width /3,
+              //height: MediaQuery.of(context).size.height / 5,
 
-          ),
-          SizedBox(width: 10,),
-          Text(" ${model.name}",style: TextStyle(
-            fontSize: 18,
-            fontFamily: "Font1",
+            ),
+            SizedBox(width: 10,),
+            Text(" ${model.name}",style: TextStyle(
+              fontSize: 18,
+              fontFamily: "Font1",
 
-          ),),
-          Spacer(),
-          Icon(Icons.arrow_forward_ios,color: defultColor),
-
-
+            ),),
+            Spacer(),
+            Icon(Icons.arrow_forward_ios,color: defultColor),
 
 
-        ],
+
+
+          ],
+        ),
       ),
     ),
   );

@@ -5,11 +5,15 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/shared/Network/local/cacheHelper.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 
+import '../../models/userDataModel/UserDateModel.dart';
+
 //abullah.ali@gmail.com
 dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');
 dynamic shoptoken =CacheHelper.getDate(key:'token');
 String toke='';
 String token='1E8FUbLpcK2G1keQ0AgpbJEJQpFn6n8luRZJ9qN9BkNspYzWsZecQWOu2LZORCcFDShJvI';
+
+UserDateModel userDateModel;
 void NavigateTo({context,router})=>  Navigator.push(context,MaterialPageRoute(builder: (context) => router));
 Future NavigateAndFinsh ({BuildContext context,router})=> Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => router), (Route<dynamic> route) => false);
 //using for boarding screen after login or signup

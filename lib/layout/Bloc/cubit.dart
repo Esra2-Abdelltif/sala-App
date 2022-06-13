@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/models/CategoriesDetailsModel/CategoriesDetailsModel.dart';
+import 'package:salaa_app/models/Change_Card/ChangeCartModel.dart';
+import 'package:salaa_app/models/cartmodel/CartModel.dart';
+import 'package:salaa_app/models/profileModel/ProfileModel.dart';
 import 'package:salaa_app/models/categroy_model/categroy_model.dart';
 
 import 'package:salaa_app/shared/Network/end_point/end_point.dart';
@@ -11,11 +15,9 @@ import 'package:salaa_app/models/change_favorites_model/change_favorites_model.d
 import 'package:salaa_app/models/favorites_model/favorites_model.dart';
 import 'package:salaa_app/models/home_model/home_model.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
-import 'package:salaa_app/modules/Setting/setting.dart';
 import 'package:salaa_app/modules/cart_screen/cart_screen.dart';
-import 'package:salaa_app/modules/cateogries_screen/cateogries_screen.dart';
+import 'package:salaa_app/modules/CategoriesScreens/CategoriesScreen/cateogries_screen.dart';
 import 'package:salaa_app/modules/favorites_screen/favorites_screen.dart';
-import 'package:salaa_app/modules/prodect_Screen/prodect_Screen.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Network/end_point/end_point.dart';
 import 'package:salaa_app/shared/Network/remote/dio_helper.dart';
@@ -24,6 +26,10 @@ import '../../models/SettingModel/SettingsModel.dart';
 import '../../models/home_model/home_model.dart';
 import '../../models/login_model/login_model.dart';
 import '../../models/userDataModel/UserDateModel.dart';
+import '../../modules/SettingScreens/screens/profile_screen/profile.dart';
+import '../../modules/SettingScreens/setting_Home_Screen.dart';
+import '../../modules/homeData_screen/homeData_screen.dart';
+import '../../shared/Styles/theme/cubit/cubit.dart';
 
 class AppCubit extends Cubit<AppStates>
 {
@@ -63,26 +69,21 @@ class AppCubit extends Cubit<AppStates>
     ProdectScreen(),
     CateogriesScreen(),
     FavoritesScreen(),
-    Setting(),
+     Setting(),
     CartScreen(),
-
-
-
   ];
 
   //BottomNavBarState
   int CurrentIndex = 0;
-  void ChangeIndex(int index){
+  void ChangeIndex(int index,{context}){
     CurrentIndex=index;
     emit(AppChangeBottomNavBarStates());
-
   }
 
 
 //Select Favorite Product
   Map<int,dynamic> FavoriteList={};
   ChangeIconeFavoriteModel changeIconeFavoriteModel;
-
   void ChangeIconFavorites({@required int ProductId}){
     FavoriteList[ProductId] = !FavoriteList[ProductId];
     emit(LoadingsChangeFavoritesStates());
@@ -135,6 +136,97 @@ class AppCubit extends Cubit<AppStates>
     });
 
   }
+
+//Select Cart Product
+  Map<int,bool> CartList={};
+  ChangeCartsModel changeCartsModel;
+  void ChangeCart({@required int ProductId}){
+    CartList[ProductId] = !CartList[ProductId];
+    emit(LoadingsChangeCartStates());
+    DioHelper.postData(
+      Url: CART,
+      data:{
+        'product_id':ProductId,
+      },
+      token: token,
+    ).then((value) {
+      changeCartsModel=  ChangeCartsModel.fromJson(value.data);
+      print(value.data);
+      if(!changeCartsModel.status)
+      {
+        CartList[ProductId] = !CartList[ProductId];
+      }
+      else{
+        getCartData();
+      }
+
+      emit(SuccessChangeCartSuccessState(changeCartsModel));
+    }).catchError((error){
+      CartList[ProductId] = !CartList[ProductId];
+      print(error.toString());
+      emit(ErrorChangeCartStates(error.toString()));
+    });
+  }
+
+//Move Cart Product in Favorite Screen
+  CartModel cartModel;
+  void getCartData(){
+    emit(LoadingGetCartStates());
+    DioHelper.getData(
+      Url: CART,
+      token: token,
+    ).then((value) {
+      cartModel = CartModel.fromJson(value.data);
+      printFullText(value.data.toString());
+      print('get cart token${token}');
+
+      emit(SuccessGetCartState());
+
+    }).catchError((error){
+      print(error.toString());
+      emit(ErrorGetCartStates(error.toString()));
+
+
+    });
+
+  }
+
+
+  //Plus and mins product in cart
+  int quantity = 1;
+
+  void plusQuantity(CartModel model, index) {
+    quantity = model.data.cartItems[index].quantity;
+    quantity++;
+    emit(ShopPlusQuantityState());
+  }
+
+  void minusQuantity(CartModel model, index) {
+    quantity = model.data.cartItems[index].quantity;
+    if (quantity > 1) quantity--;
+    emit(ShopMinusQuantityState());
+  }
+
+
+//calculte price
+  void updateCartData({@ required String id, int quantity,
+  }) {
+    emit(ShopLoadingCountCartsState());
+    DioHelper.putData(
+      Url: '${UPDATECARTS + id}',
+      data: {
+        'quantity': quantity,
+      },
+      token: token,
+    ).then((value) {
+      emit(ShopSuccessCountCartsState());
+      getCartData();
+    }).catchError((error) {
+      printFullText('ERROR UPDATE CARTS DATA' + error.toString());
+      emit(ShopErrorCountCartsState());
+    });
+  }
+
 
 
 //Get Product and Banner Data at Home
@@ -190,63 +282,11 @@ class AppCubit extends Cubit<AppStates>
 
   }
 
-
   //CarouselSlider
   int indexCarouselSider = 0;
   void ChangeindexCarouselSider(int index) {
     indexCarouselSider = index;
     emit(SuccessCategoriesDataStates());
-  }
-
-//Profile Get UserData
-//   LoginModel userModel ;
-  UserDateModel userDateModel;
-  void getUserData(){
-    emit(LoadingGetUserDataStates());
-    DioHelper.getData(
-      Url: PROFILE,
-      token: token,
-    ).then((value) {
-      userDateModel = UserDateModel.fromJson(value.data);
-      printFullText('User Data is  ${userDateModel.data.name}');
-
-      emit(SuccessGeUserDataState(userDateModel));
-
-
-    }).catchError((error){
-      print(error.toString());
-      emit(ErrorGetUserDataStates(error.toString()));
-
-
-    });
-
-  }
-
-
-//Upate Profile
-  void UpdateUserData({ @required String name, @required String email, @required String phone,@required String image}){
-    emit(LoadingUpdateUserDataStates());
-    DioHelper.putData(
-      Url: UPDATE_PROFILE,
-      token: token,
-      data: {
-        "name": name ,
-        "email": email ,
-        "phone" : phone,
-         "image":image
-}
-    ).then((value) {
-      userDateModel = UserDateModel.fromJson(value.data);
-      emit(SuccessUpdateDataState(userDateModel));
-
-
-    }).catchError((error){
-      print(error.toString());
-      emit(ErrorUpdateUserDataStates(error.toString()));
-
-
-    });
-
   }
 
 //Setting About Us
@@ -266,6 +306,36 @@ class AppCubit extends Cubit<AppStates>
       emit(ShopErrorGetSettingsState(error.toString()));
     });
   }
+
+
+//CategoriesDetails
+  CategoryDetailModel categoryDetailModel;
+  void getCategoriesDetails({int categoryId}) {
+    emit(LoadingCategoriesDetailsStates());
+    DioHelper.getData(
+      Url:'${Get_CATEGORY_Details+ categoryId.toString()}',
+      token: token
+    ).then(
+          (value) {
+        categoryDetailModel = CategoryDetailModel.fromJson(value.data);
+        categoryDetailModel.data.productData.forEach((element) {
+          FavoriteList.addAll({element.id: element.inFavorites});
+        });
+        print('SUCCESS Categroy DETAILS' + categoryDetailModel.data.productData.toString());
+        getFavoritesData();
+        emit(SuccessCategoriesDetailsStates());
+      },
+    ).catchError(
+          (error) {
+        emit(ErrorCategoriesDetailsStates(error.toString()));
+        printFullText('ERROR PRODUCT DETAILS' + error.toString());
+      },
+    );
+  }
+
+
+
+
 
 }
 

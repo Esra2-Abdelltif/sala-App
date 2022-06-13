@@ -7,12 +7,15 @@ import 'package:salaa_app/models/categroy_model/categroy_model.dart';
 import 'package:salaa_app/models/home_model/home_model.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/size_config.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
+import 'package:salaa_app/shared/compoenets/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../shared/Network/local/cacheHelper.dart';
+import '../CategoriesScreens/CategoriesDetails_Screeen/CategoriesDetails_Screen.dart';
 
 class ProdectScreen extends StatelessWidget {
   const ProdectScreen({Key key}) : super(key: key);
@@ -23,21 +26,18 @@ class ProdectScreen extends StatelessWidget {
     double width = SizeConfig.screenW;
     return Scaffold(
       body: BlocConsumer<AppCubit,AppStates>(
-        listener: (BuildContext context,AppStates state)
-        {
-          if( state is InitialAppStates) print('loading AppShop ');
-          if(state is SuccessChangeFavoritesSuccessState)
-          {
-            if(!state.changeIconeFavoriteModel.status)
-            {
-              showError(massage: state.changeIconeFavoriteModel.message ,
-                  state: ToastState.ERROR,
-                  gravity: ToastGravity.BOTTOM,
+        listener: (BuildContext context,AppStates state) {
+          if (state is SuccessChangeFavoritesSuccessState) {
+            if (state.changeIconeFavoriteModel.status) {
+              showError(massage:  state.changeIconeFavoriteModel.message, state: ToastState.SUCCESS, gravity: ToastGravity.BOTTOM,
+                  toastLength: Toast.LENGTH_LONG);
+            } else {
+              showError(massage:  state.changeIconeFavoriteModel.message, state: ToastState.ERROR, gravity: ToastGravity.BOTTOM,
                   toastLength: Toast.LENGTH_LONG);
             }
           }
-        },
 
+        },
         builder: (BuildContext context ,AppStates state) {
           AppCubit cubit = AppCubit.get(context);
           var productmodel=AppCubit.get(context).homeModel;
@@ -99,7 +99,7 @@ class ProdectScreen extends StatelessWidget {
                   ),
                   //buildCategory(categorymodel,context),
                   buildCategories(categorymodel,context),
-                  buildProductItem(productmodel,context),
+                  buildProductItem(AppCubit.get(context).homeModel,context),
 
                 ],),
             ),
@@ -229,7 +229,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
 
 
 
-  Widget buildCategory(CategoriesDataModel categroyModel,BuildContext context,)=> Column(
+  Widget buildCategory(CategoriesDataModel categroyModel,BuildContext context,{index})=> Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
@@ -246,7 +246,8 @@ crossAxisAlignment: CrossAxisAlignment.start,
       ),
       InkWell(
         onTap: (){
-          //NavigateTo(router:,context: context);
+          AppCubit.get(context).getCategoriesDetails(categoryId:categroyModel.categoriesData.data[index].id);
+          NavigateTo(context: context,router: CategoryDetailsScreen(categroyModel.categoriesData.data[index].name),);
           },
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -319,7 +320,8 @@ crossAxisAlignment: CrossAxisAlignment.start,
               itemBuilder:(context ,index ){
                 return InkWell(
                   onTap: (){
-
+                    AppCubit.get(context).getCategoriesDetails(categoryId:categroyModel.categoriesData.data[index].id);
+                    NavigateTo(context: context,router: CategoryDetailsScreen(categroyModel.categoriesData.data[index].name),);
                   },
 
                   child: Container(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:salaa_app/models/Change_Card/ChangeCartModel.dart';
+import 'package:salaa_app/models/profileModel/ProfileModel.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
 import 'package:salaa_app/models/secrch_model/SearchModel.dart';
 import 'package:salaa_app/models/userDataModel/UserDateModel.dart';
@@ -62,29 +64,36 @@ class ErrorGetFavoritesStates extends AppStates{
 }
 
 
-//profile
-class LoadingGetUserDataStates extends AppStates{}
-class SuccessGeUserDataState extends AppStates{
-  final  UserDateModel userDateModel;
+//select Cart product
+class LoadingsChangeCartStates extends AppStates{}
+class SuccessChangeCartSuccessState extends AppStates{
+  ChangeCartsModel  changeCartsModel;
 
-  SuccessGeUserDataState(this.userDateModel);
+  SuccessChangeCartSuccessState(this.changeCartsModel);
 }
-class ErrorGetUserDataStates extends AppStates{
+class ErrorChangeCartStates extends AppStates{
   final String error;
-  ErrorGetUserDataStates(this.error);
+  ErrorChangeCartStates(this.error);
 }
 
-//UPDATE Profile
-class LoadingUpdateUserDataStates extends AppStates{}
-class SuccessUpdateDataState extends AppStates{
-  final UserDateModel userDateModel;
 
-  SuccessUpdateDataState(this.userDateModel);
-}
-class ErrorUpdateUserDataStates extends AppStates{
+
+//Cart screen
+class LoadingGetCartStates extends AppStates{}
+class SuccessGetCartState extends AppStates{}
+class ErrorGetCartStates extends AppStates{
   final String error;
-  ErrorUpdateUserDataStates(this.error);
+  ErrorGetCartStates(this.error);
 }
+//Plus and mins product in cart
+class ShopPlusQuantityState extends AppStates {}
+class ShopMinusQuantityState extends AppStates{}
+//calculte price
+class ShopLoadingCountCartsState extends AppStates {}
+class ShopSuccessCountCartsState extends AppStates {}
+class ShopErrorCountCartsState extends AppStates {}
+
+
 
 
 //About Us
@@ -97,6 +106,13 @@ class ShopErrorGetSettingsState extends AppStates {
 
 
 
+//CategoryDetails screen
+class LoadingCategoriesDetailsStates extends AppStates{}
+class SuccessCategoriesDetailsStates extends AppStates{}
+class ErrorCategoriesDetailsStates extends AppStates{
+  final String error;
+  ErrorCategoriesDetailsStates(this.error);
+}
 
 
 

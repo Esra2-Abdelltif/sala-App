@@ -81,18 +81,18 @@ Widget defultTextButton({String text ,VoidCallback onPressed})=>
         child: Text(text,));
 
 //toast بيعرض رساله تسجيل الدخل سواء البايانات صح او غلط
-Future<bool> showError({@required String massage ,@required ToastState state , int timeInSecForIosWeb , ToastGravity  gravity,Toast toastLength })=>
+Future<bool> showError({@required String massage ,@required ToastState state , int timeInSecForIosWeb , ToastGravity  gravity= ToastGravity.BOTTOM,Toast toastLength })=>
     Fluttertoast.showToast(
         msg: massage,
         toastLength:  toastLength,
         gravity:gravity,
-        timeInSecForIosWeb:5,
+        timeInSecForIosWeb:1,
         backgroundColor: chooseToastColor(state),
         textColor: Colors.white,
         fontSize: 16.0
     );
 
-enum ToastState {SUCCESS,ERROR,WARNING}
+enum ToastState {SUCCESS ,ERROR ,WARNING}
 Color chooseToastColor(ToastState state){
   Color color;
   switch(state)
@@ -111,33 +111,7 @@ Color chooseToastColor(ToastState state){
   return color;
 }
 
-//showDialog
-// Widget showDialogcom({context,router, AlertDialog Function(BuildContext context) builder})=> showDialog(
-//   context: context,
-//   builder: (BuildContext context) => AlertDialog(
-//     title: const Text('Log out ? ',style: TextStyle(color: Colors.white, fontSize: 18)),
-//     content: const Text('Do You sure to log out ?',  style: TextStyle(color: Colors.white, fontSize: 18)),
-//     actions: [
-//       TextButton(
-//         onPressed: () => Navigator.pop(context),
-//         child: const Text('Cancel',  style: TextStyle(color: Colors.white, fontSize: 18)),
-//       ),
-//       TextButton(
-//         onPressed: (){ NavigateTo(context: context,router: WelcomeScreen());},
-//         child: const Text('Log out',  style: TextStyle(color:Colors.white, fontSize: 18)),
-//       ),
-//     ],
-//     elevation: 24,
-//     backgroundColor: defultColor,
-//     // shape: CircleBorder(),
-//   ),
-// );
-//
-
-
-
-
-//Divied Line
+//خط فاصل
 Widget MyDivider({double margin = 0.0}) => Container(
   color: Colors.grey[300],
   width: double.infinity,
@@ -145,3 +119,4 @@ Widget MyDivider({double margin = 0.0}) => Container(
   padding: EdgeInsets.all(16.0),
   margin: EdgeInsets.symmetric(horizontal: margin),
 );
+

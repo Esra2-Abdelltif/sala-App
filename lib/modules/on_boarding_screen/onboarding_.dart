@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
-import 'package:salaa_app/modules/login_screen/login_screen.dart';
+import 'package:salaa_app/modules/Register_Screens/login_screen/login_screen.dart';
 import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

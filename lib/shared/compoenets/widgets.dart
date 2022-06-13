@@ -1,14 +1,13 @@
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
-import 'package:salaa_app/models/favorites_model/favorites_model.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
-import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 
-Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true})=> Padding(
+
+Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true, bool BuildIcon=true, bool BuildIconCart =true })=> Padding(
   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
   child: Container(
     height: 146.0,
@@ -93,7 +92,9 @@ Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true})=> Paddi
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
+
                   Spacer(),
+                  if(BuildIcon )
                   IconButton(
                     onPressed: (){
                       //print(modelHome.data.products[index].id);
@@ -103,6 +104,14 @@ Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true})=> Paddi
                     // color: Colors.red  ,
                     icon: (AppCubit.get(context).FavoriteList[model.id])?const Icon( Icons.favorite ,size: 30,) :const Icon(Icons.favorite_border)  ,
                     color: (AppCubit.get(context).FavoriteList[model.id])? Colors.red : Colors.grey ,
+                  ),
+                  if(BuildIcon)
+                  IconButton(
+                    onPressed: (){
+                      AppCubit.get(context).ChangeCart(ProductId: model.id);
+                    },
+                     icon: Icon( Icons.shopping_cart,size: 30,)   ,
+                    color: Colors.grey  ,
                   ),
 
                 ],
@@ -116,7 +125,6 @@ Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true})=> Paddi
 );
 
 Widget BottomNavigationBarwidget(BuildContext context,{Color bgcolor })=>AnimatedBottomNavigationBar(
-
   backgroundColor: bgcolor,
   inactiveColor: Color(0xFF8D8E98),
   icons: AppCubit.get(context).bottomsIcons,
@@ -130,3 +138,7 @@ Widget BottomNavigationBarwidget(BuildContext context,{Color bgcolor })=>Animate
   leftCornerRadius: 32,
   rightCornerRadius: 32,
 );
+
+
+
+

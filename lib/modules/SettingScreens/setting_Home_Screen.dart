@@ -7,16 +7,16 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
 import 'package:salaa_app/models/login_model/login_model.dart';
-import 'package:salaa_app/modules/about_screen/aboutScreen.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/about_screen/aboutScreen.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/bloc/cubit.dart';
 import 'package:salaa_app/modules/cart_screen/cart_screen.dart';
-import 'package:salaa_app/modules/profile_screen/profilc_screen.dart';
-import 'package:salaa_app/modules/profile_screen/profile.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/profile_screen/profile.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/states.dart';
 
 import '../../shared/Constans/constans.dart';
-import '../welcome_screen/welcome_screen.dart';
+import '../Register_Screens/welcome_screen/welcome_screen.dart';
 
 
 class Setting extends StatelessWidget {
@@ -57,9 +57,8 @@ class Setting extends StatelessWidget {
                   //Profile
                   InkWell(
                     onTap: (){
-
                       NavigateTo(context: context,router: UserProfile());
-                      AppCubit.get(context).getUserData();
+                      ProfileCubit.get(context).getProfileData();
                     },
                     child: Container(
                         height: 70,
