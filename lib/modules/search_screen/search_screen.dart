@@ -27,7 +27,14 @@ class SearchScreen extends StatelessWidget {
         builder:  (BuildContext context,SearchStates state){
          // var list =SearchCubit.get(context).SearchProduct("text");
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new_outlined,
+                color: defultColor,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+             ),
             body: Form(
               key: formkey,
               child: Column(

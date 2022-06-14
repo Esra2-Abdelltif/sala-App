@@ -167,6 +167,7 @@ class AppCubit extends Cubit<AppStates>
 //product details
   ProductDetailsmodel productDetailsmodel  ;
   void getProductsDetails ({@required int id})async{
+    emit(LoadingGetDetailsProductStates());
     await DioHelper.getData(Url:  "products/$id" ,token: token).then((value){
       productDetailsmodel =ProductDetailsmodel.fromJson(value.data);
       emit(SucessGetDetailsProductStates());

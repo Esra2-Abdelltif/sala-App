@@ -33,15 +33,17 @@ class FavoritesScreen extends StatelessWidget {
           AppCubit cubit =AppCubit.get(context);
           var favoritecubit = AppCubit.get(context).favoritesModelDataModel ;
 
-          return ConditionalBuilder(
-              condition: state is! LoadingGetFavoritesStates,
-              fallback: (context)=>  Center(
-                child: CircularProgressIndicator(),
-              ),
-              builder: (context) => ListView.separated(
-                  itemBuilder: ((context, index) => BuildListItem( AppCubit.get(context).favoritesModelDataModel.data.data[index].product,context)),
-                  separatorBuilder: ((context, index) => MyDivider()),
-                  itemCount: AppCubit.get(context).favoritesModelDataModel.data.data.length));
+          return Scaffold(
+            body: AppCubit.get(context).favoritesModelDataModel == null ?
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              child: Center(
+                  child: const CircularProgressIndicator(),),
+            ) : AppCubit.get(context).favoritesModelDataModel.data.data.isEmpty ? Center(child: Text ('Your Favorite  list is empty .',style: TextStyle(color: defultColor,fontSize: 20),))
+                : ListView.separated(
+                itemBuilder: ((context, index) => BuildListItem( AppCubit.get(context).favoritesModelDataModel.data.data[index].product,context)),
+                separatorBuilder: ((context, index) => MyDivider(margin: 20)),
+                itemCount: AppCubit.get(context).favoritesModelDataModel.data.data.length));
         }
 
 

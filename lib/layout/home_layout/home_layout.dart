@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,8 @@ class HomeLayout extends StatelessWidget {
         builder: (BuildContext context ,AppStates state)
         {
           AppCubit cubit = AppCubit.get(context);
+        //  var item = AppCubit.get(context).cartModel.data.cartItems.length.toString();
+
           return Scaffold(
             key: ScaffoldKey,
             appBar: AppBar(
@@ -55,15 +58,28 @@ class HomeLayout extends StatelessWidget {
                       }, icon: Icon(Icons.search ,color: defultColor,size: 30,)),
                 ]),
             body: cubit.Screen[cubit.CurrentIndex],
-            floatingActionButton: FloatingActionButton(
+            //cartModel.data.cartItems.isEmpty
+            floatingActionButton: true  ? FloatingActionButton(
               onPressed: () {
                 NavigateTo(router: CartScreen(),context: context);
               },
               child: Icon(Icons.shopping_cart),
               backgroundColor: defultColor,
+            ):
+            Badge(
+              badgeContent: Text("${3}" ,style: TextStyle(color: Colors.white,fontSize: 12)),
+              child: FloatingActionButton(
+                onPressed: () {
+                  NavigateTo(router: CartScreen(),context: context);
+                },
+                child: Icon(Icons.shopping_cart),
+                backgroundColor: defultColor,
+              ),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: BottomNavigationBarwidget(context,bgcolor: ThemeAppCubit.get(context).IsDark ? Colors.white:HexColor('333739') ,),
+
+
             //
             // bottomNavigationBar: BottomNavigationBar(
             //   items: cubit.bottomNavigation,

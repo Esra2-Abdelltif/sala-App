@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/layout/home_layout/home_layout.dart';
 import 'package:salaa_app/models/cartmodel/CartModel.dart';
+import 'package:salaa_app/modules/SettingScreens/screens/Payments_Screen/Payments_Screen.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
@@ -17,16 +20,34 @@ class CartScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context)=> AppCubit()..getCartData(),
       child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+
+          if (state is SuccessChangeCartSuccessState) {
+            if (state.changeCartsModel.status) {
+              showError(massage:  state.changeCartsModel.message, state: ToastState.SUCCESS,);
+            } else {
+              showError(massage:  state.changeCartsModel.message, state: ToastState.ERROR);
+            }
+          }
+        },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(title:Text( "Cart")),
+            appBar: AppBar(title:Text( "Cart"),leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new_outlined,
+                color: defultColor,
+              ),
+              onPressed: () {
+                NavigateTo(context: context,router: HomeLayout());
+              },
+            ),
+              centerTitle: true,),
             body: AppCubit.get(context).cartModel == null ?
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: Center(
-                  child: LinearProgressIndicator()),
-            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ? Center(child: Text ('Your Cart list is empty .'))
+                  child: const CircularProgressIndicator(),),
+            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ? Center(child: Text ('Your Cart list is empty .',style: TextStyle(color: defultColor,fontSize: 20)))
                 : Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -157,30 +178,6 @@ class CartScreen extends StatelessWidget {
                 //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Spacer(),
-                    // Container(
-                    //   width: 40,
-                    //   height: 40,
-                    //   child: FloatingActionButton(
-                    //     onPressed: () {
-                    //       AppCubit.get(context).plusQuantity(AppCubit.get(context).cartModel, index);
-                    //       AppCubit.get(context).updateCartData(id: AppCubit.get(context).cartModel.data.cartItems[index].id.toString(), quantity: AppCubit.get(context).quantity,);
-                    //     },
-                    //     child:
-                    //     Center(
-                    //       child: Text('+',
-                    //         style:
-                    //         TextStyle(
-                    //           fontSize: 22,
-                    //           fontStyle: FontStyle.italic,
-                    //           fontWeight: FontWeight.w500,
-                    //         ),),
-                    //     ),
-
-
-                      //),
-                    //),
-
-                    //Button بعمل زرار جاهز بشكل الدائره
                     RawMaterialButton(
                       elevation: 2.0,
                       shape: CircleBorder(),
@@ -263,6 +260,12 @@ class CartScreen extends StatelessWidget {
 
                 ),
               ),
+              // Text(
+              //   ' ${AppCubit.get(context).cartModel.data.cartItems.length.toString()} items',
+              //   style: TextStyle(
+              //
+              //   ),
+              // ),
               Text(
                 '\$ ${model.total}',
                 style: TextStyle(
@@ -279,6 +282,7 @@ class CartScreen extends StatelessWidget {
           Spacer(),
           InkWell(
             onTap: () {
+              NavigateTo(context: context,router:  PaymentsScreen());
 
             },
             child: Container(

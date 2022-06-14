@@ -31,7 +31,7 @@ class SplashSCreen extends StatelessWidget {
         SizedBox(height: 15,),
         Text('Sala App',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black54),)
       ]),
-      nextScreen:RightScreen,
+      nextScreen:OnBoardinScreen(),
       splashIconSize: 250,
       splashTransition: SplashTransition.slideTransition,
 

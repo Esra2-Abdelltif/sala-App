@@ -28,7 +28,7 @@ class CateogriesScreen extends StatelessWidget {
 
 
             return ConditionalBuilder(
-              condition: cubit.categoriesDataModel !=null,
+              condition: cubit.categoriesDataModel !=null ,
               fallback: (context)=>  Center(
                 child: CircularProgressIndicator(),
 
@@ -68,7 +68,7 @@ class CateogriesScreen extends StatelessWidget {
 
   Widget buildCategory(Data model,BuildContext context,)=>  Row(
     children: [
-      // SizedBox(width: 15,),
+
       Image(image: NetworkImage("${model.image}"),
         fit: BoxFit.cover,
         width: MediaQuery.of(context).size.width /3,

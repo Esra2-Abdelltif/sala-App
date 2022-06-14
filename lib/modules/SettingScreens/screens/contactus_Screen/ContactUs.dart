@@ -11,7 +11,7 @@ import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
 
-import '../WebViewPage/WebViewScreen.dart';
+import '../WebView_Screen/WebViewScreen.dart';
 
 
 class ContactUsScreen extends StatelessWidget {
@@ -27,7 +27,15 @@ class ContactUsScreen extends StatelessWidget {
           return Scaffold(
 
             appBar: AppBar(
-              title: Text('Contact Us'),
+              title: Text('Contact Us',),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  color: defultColor,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              centerTitle: true,
             ),
             body: state is ShopLoadingGetSettingsState
                 ? Center(
@@ -42,11 +50,7 @@ class ContactUsScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                'assets/images/shopping app logo1.png',
-                                width: 187.0,
-                                height: 162.0,
-                              ),
+
                               SizedBox(
                                 height: 40.0,
                               ),

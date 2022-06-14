@@ -30,19 +30,22 @@ ThemeData darkthemes = ThemeData(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: HexColor('333739'),
         statusBarIconBrightness:Brightness.light,
-        // statusBarBrightness: Brightness.dark,
+
 
       ),
     ),
+
+
+
   drawerTheme: DrawerThemeData(backgroundColor: HexColor('333739') ),
 
-  // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-  //     type: BottomNavigationBarType.fixed,
-  //     selectedItemColor: defultColor,
-  //     unselectedItemColor: Color(0xFF8D8E98),
-  //     backgroundColor:HexColor('333739'),
-  //     elevation: 20,
-  //   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: defultColor,
+      unselectedItemColor: Color(0xFF8D8E98),
+      backgroundColor:HexColor('333739'),
+      elevation: 20,
+    ),
 
 );
 

@@ -30,17 +30,25 @@ class CategoryDetailsScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(categoryName),
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new_outlined,
+                color: defultColor,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            centerTitle: true,
           ),
           body:ConditionalBuilder(
             condition: productsmodel !=null,
             fallback: (context)=>  const Center(
-              // ignore: unnecessary_const
               child: const CircularProgressIndicator(),
             ),
             builder: (context) => SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   buildProductItem(productsmodel,context),
 
                 ],),

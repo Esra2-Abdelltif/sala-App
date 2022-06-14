@@ -54,7 +54,14 @@ class UserProfile extends StatelessWidget {
 
 
         return  Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(title: Text("Welcome ${model.data.name.split(" ").elementAt(0)} ..👋"),leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_new_outlined,
+              color: defultColor,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+            centerTitle: true,),
             body: ConditionalBuilder(
               condition: ProfileCubit.get(context).profileModel != null,
              builder: (context)=>SingleChildScrollView(
@@ -66,7 +73,7 @@ class UserProfile extends StatelessWidget {
                      children: [
                        if(state is UpdateProfileLoadingStates)
                          LinearProgressIndicator(),
-                       Center(child: Text('My Profile',style: TextStyle(color: defultColor,fontSize: 30),)),
+
                        SizedBox(
                          height:  20,),
                        Center(

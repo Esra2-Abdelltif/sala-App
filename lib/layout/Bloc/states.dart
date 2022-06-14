@@ -77,6 +77,7 @@ class ErrorChangeCartStates extends AppStates{
 }
 
 //product details
+class LoadingGetDetailsProductStates extends AppStates {}
 class SucessGetDetailsProductStates extends AppStates {}
 class ErrorGetDetailsProductStates extends AppStates {}
 
