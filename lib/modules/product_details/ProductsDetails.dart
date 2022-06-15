@@ -107,11 +107,9 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Row(children: [
-                                        Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0, ),
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,),
-                                      ],),
+                                      Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0, ),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,),
                                       SizedBox(height: 10,),
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.end,
