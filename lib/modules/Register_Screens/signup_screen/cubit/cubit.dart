@@ -15,7 +15,7 @@ class SignUpCubit extends Cubit<SignUpStates>
   SignUpCubit() : super(InitialSignUpStates());
   static  SignUpCubit get(context) => BlocProvider.of(context);
   //هعمل object من model عشان اعرف acess عليه و اخد منه data
-  LoginModel loginModel;
+  UserDateModel userDateModel;
 
   void UserSignUp({@required String email ,@required String password,@required String name ,@required String phone}){
     emit(SignUpLoadingState());

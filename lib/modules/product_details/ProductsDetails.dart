@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salaa_app/layout/Bloc/cubit.dart';
 import 'package:salaa_app/layout/Bloc/states.dart';
+import 'package:salaa_app/models/home_model/home_model.dart';
+import 'package:salaa_app/models/prodect_details/ProductDetailsModel.dart';
+import 'package:salaa_app/modules/cart_screen/cart_screen.dart';
+import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
@@ -17,6 +21,7 @@ int productsId ;
 }
 
 class _ProductsDetailsState extends State<ProductsDetails> {
+  // int index;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +40,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
         builder: (context, state) {
        AppCubit cubit =AppCubit.get(context);
        cubit.getProductsDetails(id: widget.productsId);
+       //Home model =AppCubit.get(context).productDetailsmodel.data;
 
           return Scaffold(
             appBar: AppBar(
@@ -46,6 +52,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
+
               centerTitle: true,
             ),
 
@@ -100,11 +107,12 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      cubit.productDetailsmodel.data.name,
-                                      style: TextStyle(fontSize: 18.0,),
+                                    Row(children: [
+                                      Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0,),),
+                                      Spacer()
+                                      //buildIconeFavorite(AppCubit.get(context).homeModel.data.products[index],context)
 
-                                    ),
+                                    ],),
                                     SizedBox(height: 10,),
                                     Row(
                                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -234,4 +242,12 @@ class _ProductsDetailsState extends State<ProductsDetails> {
       );
 
   }
+  Widget buildIconeFavorite(modelHome,BuildContext context)=>IconButton(
+    onPressed: (){
+      //print(modelHome.data.products[index].id);
+      AppCubit.get(context).ChangeIconFavorites(ProductId: modelHome.id);
+    },
+    icon: (AppCubit.get(context).FavoriteList[modelHome.id])?const Icon( Icons.favorite ,size: 30,) :const Icon(Icons.favorite_border)  ,
+    color: (AppCubit.get(context).FavoriteList[modelHome.id])? Colors.red : Colors.grey ,
+  );
 }
