@@ -27,7 +27,7 @@ class SplashSCreen extends StatelessWidget {
     return  AnimatedSplashScreen(
       duration: 400,
       splash: Column(children: [
-        Image.asset('assets/images/shopping app logo1.png',width: 150,height: 140),
+        Image.asset('assets/images/salalogo.png',width: 150,height: 140),
         SizedBox(height: 15,),
         Text('Sala App',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black54),)
       ]),

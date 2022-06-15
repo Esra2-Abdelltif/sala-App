@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
           return  MaterialApp(
             theme: lightthemes..bottomNavigationBarTheme,
             darkTheme: darkthemes..bottomNavigationBarTheme,
-            themeMode: ThemeAppCubit.get(context).IsDark ? ThemeMode.light:ThemeMode.dark ,
+            themeMode: ThemeAppCubit.get(context).IsDark ? ThemeMode.dark:ThemeMode.light ,
             debugShowCheckedModeBanner: false,
             //home:RightScreen,
             home:SplashSCreen(),

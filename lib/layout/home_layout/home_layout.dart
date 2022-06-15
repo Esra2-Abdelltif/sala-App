@@ -44,7 +44,7 @@ class HomeLayout extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 15,
-                      backgroundImage: AssetImage('assets/images/shopping app logo1.png',),
+                      backgroundImage: AssetImage('assets/images/salalogo.png',),
                     ),
                     SizedBox(
                       width: 10,),
@@ -77,7 +77,7 @@ class HomeLayout extends StatelessWidget {
               ),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-            bottomNavigationBar: BottomNavigationBarwidget(context,bgcolor: ThemeAppCubit.get(context).IsDark ? Colors.white:HexColor('333739') ,),
+            bottomNavigationBar: BottomNavigationBarwidget(context,bgcolor: ThemeAppCubit.get(context).IsDark ? HexColor('333739') :Colors.white,),
 
 
             //

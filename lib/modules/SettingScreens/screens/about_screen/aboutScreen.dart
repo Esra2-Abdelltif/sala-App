@@ -48,7 +48,7 @@ class AboutUsScreen extends StatelessWidget {
                   child: Container(
                     child:Column(
                       children: [
-                        Image.asset('assets/images/shopping app logo1.png', width: 202.0, height: 177.0,),
+                        Image.asset('assets/images/salalogo.png', width: 202.0, height: 177.0,),
                         SizedBox(
                           height: 35.0,
                         ),

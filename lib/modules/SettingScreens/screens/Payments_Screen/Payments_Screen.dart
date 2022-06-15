@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'package:salaa_app/shared/compoenets/components.dart';
 
 import '../../../../layout/Bloc/cubit.dart';
 import '../../../../shared/Styles/colors.dart';
+import '../../../../shared/compoenets/widgets.dart';
 
 class PaymentsScreen extends StatefulWidget {
   @override
@@ -64,7 +66,28 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: Center(
                 child: const CircularProgressIndicator(),),
-            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ? Center(child: Text ('No product yet',style: TextStyle(color: defultColor,fontSize: 20)))
+            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ?
+            Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Text ('No product yet .',style: TextStyle(color: defultColor,fontSize: 20),),
+                    SizedBox(height: 60,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        BounceInDown(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInUp(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInLeft(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInRight(duration: Duration(seconds: 3),child: Square() ),
+
+                      ],
+                    ),
+
+
+                  ],
+                ))
                 : Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: SingleChildScrollView(

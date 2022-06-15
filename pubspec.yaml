@@ -53,11 +53,24 @@ dependencies:
   animated_bottom_navigation_bar: ^0.3.3
   badges: ^2.0.3
   animate_do: ^2.1.0
+  flutter_launcher_icons: ^0.9.3
+
+
+
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/salalogo.png"
+
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

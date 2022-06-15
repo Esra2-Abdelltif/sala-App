@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image:AssetImage('assets/images/shopping app logo1.png'),height: 250,width: 250),
+                image:AssetImage('assets/images/salalogo.png'),height: 250,width: 250),
               Text('Shopping Now',
                 style: TextStyle(fontSize: 30, color: Colors.black54, fontWeight: FontWeight.w600),),
               Text('Welcome to Application',

@@ -145,7 +145,7 @@ class _SettingState extends State<Setting> {
                             ),),
                           child: Row(children: [
                             SizedBox(width: 10),
-                            Icon(Icons.currency_exchange ,color: defultColor,size: 40),
+                            Icon(Icons.monetization_on_outlined ,color: defultColor,size: 40),
                             SizedBox(width: 15),
                             Text('Currency',
                               style: Theme.of(context).textTheme.bodyText2,),
