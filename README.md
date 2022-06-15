@@ -2,6 +2,8 @@
 
 E-Commerce Mobile Application by Flutter
 Using State management "Bloc" and Api
+
+![image](https://user-images.githubusercontent.com/72301777/173845453-6a3c1458-5198-476f-88c6-e9d37604ae54.png)
 ![image](https://user-images.githubusercontent.com/72301777/173709958-0a1946fa-4c03-4b30-b7c9-df2efc65f86d.png)
 ![image](https://user-images.githubusercontent.com/72301777/173709988-46cec255-4769-414f-ba49-95bff80029f7.png)
 ![image](https://user-images.githubusercontent.com/72301777/173710033-ec2d820d-f25a-4e02-a157-2ab184e816eb.png)
@@ -21,8 +23,6 @@ Using State management "Bloc" and Api
 ![image](https://user-images.githubusercontent.com/72301777/173710325-d3963249-c9fc-43f2-b3ec-92d1f0a25069.png)
 ![image](https://user-images.githubusercontent.com/72301777/173710334-db9e3f35-935f-4eb7-9bfe-daa8f7d0acf9.png)
 ![image](https://user-images.githubusercontent.com/72301777/173710344-205cdcad-566b-44ad-a473-19a841c60cc8.png)
+![image](https://user-images.githubusercontent.com/72301777/173825104-a112ff4a-ddf3-4ac0-bea2-4c882556ec26.png)
 
-
-
-
-
+https://user-images.githubusercontent.com/72301777/173823813-a22ba6e5-6b8d-44d0-8a4a-f27e451de324.mp4
