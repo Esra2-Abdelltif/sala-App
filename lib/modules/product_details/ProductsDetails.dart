@@ -108,7 +108,8 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(children: [
-                                      Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0,),),
+                                      Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0, ),maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,),
                                       Spacer()
                                       //buildIconeFavorite(AppCubit.get(context).homeModel.data.products[index],context)
 
