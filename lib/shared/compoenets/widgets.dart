@@ -9,7 +9,6 @@ import 'package:salaa_app/shared/Styles/colors.dart';
 
 import '../../modules/product_details/ProductsDetails.dart';
 
-
 Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true, bool BuildIcon=true, bool BuildIconCart =true })=> Padding(
   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
   child: InkWell(
@@ -142,5 +141,11 @@ Widget BottomNavigationBarwidget(BuildContext context,{Color bgcolor })=>Animate
 );
 
 
-
+Widget Square()=>Container(
+  width: 50,
+  height: 50,
+  decoration: BoxDecoration(
+    color:defultColor,
+  ),
+);
 

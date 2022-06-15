@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,31 @@ class FavoritesScreen extends StatelessWidget {
           return Scaffold(
             body: AppCubit.get(context).favoritesModelDataModel == null ?
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(horizontal: 50.0 ),
               child: Center(
                   child: const CircularProgressIndicator(),),
-            ) : AppCubit.get(context).favoritesModelDataModel.data.data.isEmpty ? Center(child: Text ('Your Favorite  list is empty .',style: TextStyle(color: defultColor,fontSize: 20),))
+            ) : AppCubit.get(context).favoritesModelDataModel.data.data.isEmpty ?
+            Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Text ('Your Favorite  list is empty .',style: TextStyle(color: defultColor,fontSize: 20),),
+                SizedBox(height: 60,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    BounceInDown(duration: Duration(seconds: 3),child: Square() ),
+                    BounceInUp(duration: Duration(seconds: 3),child: Square() ),
+                    BounceInLeft(duration: Duration(seconds: 3),child: Square() ),
+                    BounceInRight(duration: Duration(seconds: 3),child: Square() ),
+
+                  ],
+                ),
+
+
+              ],
+            ))
                 : ListView.separated(
                 itemBuilder: ((context, index) => BuildListItem( AppCubit.get(context).favoritesModelDataModel.data.data[index].product,context)),
                 separatorBuilder: ((context, index) => MyDivider(margin: 20)),

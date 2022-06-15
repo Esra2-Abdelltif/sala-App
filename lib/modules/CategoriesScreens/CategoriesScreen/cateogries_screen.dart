@@ -41,6 +41,7 @@ class CateogriesScreen extends StatelessWidget {
                     NavigateTo(context: context,router:CategoryDetailsScreen(categorymodel.categoriesData.data[index].name));
                   },
                   child: Container(
+                    height: 150,
 
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),

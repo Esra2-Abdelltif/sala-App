@@ -52,7 +52,7 @@ dependencies:
   carousel_slider: ^4.1.1
   animated_bottom_navigation_bar: ^0.3.3
   badges: ^2.0.3
-  flutter_credit_card: ^2.0.0
+  animate_do: ^2.1.0
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,8 @@ import 'package:salaa_app/shared/Constans/constans.dart';
 import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
+
+import '../../shared/compoenets/widgets.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key key}) : super(key: key);
@@ -47,7 +50,28 @@ class CartScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: Center(
                   child: const CircularProgressIndicator(),),
-            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ? Center(child: Text ('Your Cart list is empty .',style: TextStyle(color: defultColor,fontSize: 20)))
+            ) : AppCubit.get(context).cartModel.data.cartItems.isEmpty ?
+            Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Text ('Your Cart list is empty .',style: TextStyle(color: defultColor,fontSize: 20),),
+                    SizedBox(height: 60,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        BounceInDown(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInUp(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInLeft(duration: Duration(seconds: 3),child: Square() ),
+                        BounceInRight(duration: Duration(seconds: 3),child: Square() ),
+
+                      ],
+                    ),
+
+
+                  ],
+                ))
                 : Stack(
               alignment: Alignment.bottomCenter,
               children: [
