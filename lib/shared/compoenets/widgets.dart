@@ -124,7 +124,16 @@ Widget BuildListItem( model,BuildContext context,{bool IsoldPrice=true, bool Bui
     ),
   ),
 );
-
+Widget BuildFavoriteIcon(model,BuildContext context)=> IconButton(
+  onPressed: (){
+    //print(modelHome.data.products[index].id);
+    AppCubit.get(context).ChangeIconFavorites(ProductId: model.id);
+  },
+  //  icon: Icon( Icons.favorite_border_rounded,size: 30,)   ,
+  // color: Colors.red  ,
+  icon: (AppCubit.get(context).FavoriteList[model.id])?const Icon( Icons.favorite ,size: 30,) :const Icon(Icons.favorite_border)  ,
+  color: (AppCubit.get(context).FavoriteList[model.id])? Colors.red : Colors.grey ,
+);
 Widget BottomNavigationBarwidget(BuildContext context,{Color bgcolor })=>AnimatedBottomNavigationBar(
   backgroundColor: bgcolor,
   inactiveColor: Color(0xFF8D8E98),

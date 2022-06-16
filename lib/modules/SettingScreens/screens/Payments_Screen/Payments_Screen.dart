@@ -155,7 +155,6 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                             onChanged: (value) {},
                           ),
                         ),
-
                         SizedBox(height: 10,),
                         //OR
                         Row(
@@ -179,7 +178,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               child: Row(children: [
                                 SizedBox(width: 10),
                                 Image.network(
-                      'https://seeklogo.com/images/F/free-delivery-logo-3F8F5B428D-seeklogo.com.png',
+                                      'https://seeklogo.com/images/F/free-delivery-logo-3F8F5B428D-seeklogo.com.png',
                                   height: 35,
                                   width: 35,
                                 ),
@@ -201,14 +200,24 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                         ),
                         SizedBox(height: 20,),
                         //Save
-                        Container(
-                          width: 200,
-                          height: 50,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child:MaterialButton(color:defultColor,hoverColor: Colors.black,
-                            onPressed: () {},
-                            child:Text('Save',style: TextStyle(fontSize:18 ,),), ),
+                        ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => Container(
+
+                            height: 50,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child:MaterialButton(color:defultColor,hoverColor: Colors.black,
+                              onPressed: () {
+                                AppCubit.get(context).ChangeCart(ProductId: AppCubit.get(context).cartModel.data.cartItems[index].product.id);
+
+                              },
+                              child:Text('Save',style: TextStyle(fontSize:18 ,),), ),
+                          ),
+                          itemCount: 1,
+
+
                         ),
 
 

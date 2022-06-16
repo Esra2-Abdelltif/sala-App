@@ -12,6 +12,8 @@ import 'package:salaa_app/shared/Styles/colors.dart';
 import 'package:salaa_app/shared/Styles/theme/cubit/cubit.dart';
 import 'package:salaa_app/shared/compoenets/components.dart';
 
+import '../../shared/compoenets/widgets.dart';
+
 class ProductsDetails extends StatefulWidget {
   int productsId ;
   ProductsDetails({@required this.productsId});
@@ -29,6 +31,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
       create: (BuildContext context)=>AppCubit(),
       child: BlocConsumer<AppCubit,AppStates>(
         listener: (context, state) {
+
           if (state is SuccessChangeCartSuccessState) {
             if (state.changeCartsModel.status) {
               showError(massage:  state.changeCartsModel.message, state: ToastState.SUCCESS,);
@@ -40,8 +43,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
         builder: (context, state) {
           AppCubit cubit =AppCubit.get(context);
           cubit.getProductsDetails(id: widget.productsId);
-          //Home model =AppCubit.get(context).productDetailsmodel.data;
-
+          // var prductmodel = AppCubit.get(context).productDetailsmodel.data;
           return Scaffold(
             appBar: AppBar(
               title: Text("Products Details"),
@@ -79,7 +81,6 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                       image: NetworkImage("${cubit.productDetailsmodel.data.image}"),
                                       height: MediaQuery.of(context).size.height / 3,
                                     ),
-
                                     (cubit.productDetailsmodel?.data.discount != 0)?Text("DISCOUNT",style: TextStyle(
                                         color: Colors.white,
                                         backgroundColor: Colors.red,
@@ -110,6 +111,8 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                       Text(cubit.productDetailsmodel.data.name, style: TextStyle(fontSize: 18.0, ),
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,),
+
+
                                       SizedBox(height: 10,),
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -122,6 +125,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                               //fontWeight: FontWeight.w900,
                                             ),
                                           ),
+
                                           SizedBox(
                                             width: 15.0,
                                           ),
@@ -176,6 +180,11 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+
+
 
 
                             ],
@@ -187,7 +196,7 @@ class _ProductsDetailsState extends State<ProductsDetails> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(40.0),topRight:Radius.circular(40.0)),
-                        color: ThemeAppCubit.get(context).IsDark ? Colors.white :HexColor('333739'),
+                        color: ThemeAppCubit.get(context).IsDark ? HexColor('333739'):Colors.white ,
                         boxShadow: [
                           BoxShadow(blurRadius: 1, color: Color(0xFF8D8E98),spreadRadius: 0.1),
                         ],

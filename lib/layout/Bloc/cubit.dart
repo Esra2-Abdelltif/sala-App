@@ -155,8 +155,6 @@ class AppCubit extends Cubit<AppStates>
       print(value.data);
         getCartData();
       getProductsDetails(id: ProductId);
-
-
       emit(SuccessChangeCartSuccessState(changeCartsModel));
     }).catchError((error){
       CartList[ProductId] = !CartList[ProductId];

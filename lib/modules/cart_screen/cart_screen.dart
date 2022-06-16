@@ -263,7 +263,7 @@ class CartScreen extends StatelessWidget {
     width: double.infinity,
     //height: 85.0,
     decoration: BoxDecoration(
-     color: ThemeAppCubit.get(context).IsDark ? Colors.white :HexColor('333739'),
+     color: ThemeAppCubit.get(context).IsDark ? HexColor('333739'):Colors.white,
       boxShadow: [
         BoxShadow(blurRadius: 1, color: Color(0xFF8D8E98),spreadRadius: 0.1),
       ],

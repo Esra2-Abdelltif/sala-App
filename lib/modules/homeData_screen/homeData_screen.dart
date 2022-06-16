@@ -139,7 +139,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
                         onTap: (){
-                          print('details');
+
                           NavigateTo(context: context,router:  ProductsDetails(productsId:modelHome.data.products[index].id,));
                        //   ProductsDetails(productsId: productsId,)
                           // NavigateToProductsDetails(context ,data.id!);
