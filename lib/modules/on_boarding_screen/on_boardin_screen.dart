@@ -35,9 +35,9 @@ void Onsubmit(){
         title: 'Online Shopping',
         body: 'You can shopping anytime, anywhere that you want.'),
     BoardingModel(image:'assets/images/onboarding_2.png' , title: 'Mobile Payment',
-        body: 'Download our shopping application and buy using your smarphone or laptop.'),
+        body: 'Download our shopping application and buy using your smartphone or laptop.'),
     BoardingModel(image:'assets/images/onboarding_3.png' ,
-        title: 'Delivry Service',
+        title: 'Delivery Service',
         body: 'Modern delivering technologies.The products you order will be delivered to your address.')
   ];
   bool isLast=false;
