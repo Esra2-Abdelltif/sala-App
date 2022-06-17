@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
         ),
 
       ],
+
       child: BlocConsumer<ThemeAppCubit,ThemeAppStates>(
         listener: (context ,state){},
         builder: (context ,state){
