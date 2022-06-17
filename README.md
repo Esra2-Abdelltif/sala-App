@@ -25,4 +25,8 @@ Using State management "Bloc" and Api
 ![image](https://user-images.githubusercontent.com/72301777/173710344-205cdcad-566b-44ad-a473-19a841c60cc8.png)
 ![image](https://user-images.githubusercontent.com/72301777/173825104-a112ff4a-ddf3-4ac0-bea2-4c882556ec26.png)
 
-https://user-images.githubusercontent.com/72301777/173823813-a22ba6e5-6b8d-44d0-8a4a-f27e451de324.mp4
+
+https://user-images.githubusercontent.com/72301777/174152320-cc7b89ec-70df-4e17-b923-1a8d1baa2f68.mp4
+
+
+
