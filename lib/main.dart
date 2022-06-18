@@ -67,12 +67,12 @@ class MyApp extends StatelessWidget {
       ],
 
       child: BlocConsumer<ThemeAppCubit,ThemeAppStates>(
-        listener: (context ,state){},
-        builder: (context ,state){
+        listener: ( themecontext,state){},
+        builder: (themecontext ,state){
           return  MaterialApp(
             theme: lightthemes..bottomNavigationBarTheme,
             darkTheme: darkthemes..bottomNavigationBarTheme,
-            themeMode: ThemeAppCubit.get(context).IsDark ? ThemeMode.dark:ThemeMode.light ,
+            themeMode: ThemeAppCubit.get(themecontext).IsDark ? ThemeMode.dark:ThemeMode.light ,
             debugShowCheckedModeBanner: false,
             //home:RightScreen,
             home:SplashSCreen(),
