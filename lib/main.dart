@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
       ],
 
       child: BlocConsumer<ThemeAppCubit,ThemeAppStates>(
-        listener: ( themecontext,state){},
+        listener: (themecontext,state){},
         builder: (themecontext ,state){
           return  MaterialApp(
             theme: lightthemes..bottomNavigationBarTheme,
